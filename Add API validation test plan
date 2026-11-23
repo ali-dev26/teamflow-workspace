@@ -1,0 +1,66 @@
+CI/CD Delivery Workflow
+
+1. Introduction
+
+The CI/CD workflow automates the process of checking, building, and preparing the TeamFlow Workspace application for deployment.
+
+It helps developers identify problems early and maintain a reliable development process.
+
+2. Pipeline Flow
+
+The conceptual workflow is:
+
+Developer
+↓
+Code Changes
+↓
+Push to GitHub
+↓
+GitHub Actions
+↓
+Install Dependencies
+↓
+Run API Tests
+↓
+Are Tests Successful?
+
+- No: Stop the pipeline and report the failure.
+- Yes: Build the Docker Image.
+  ↓
+  Run Docker Container
+  ↓
+  Deployment Ready
+
+3. Pipeline Stages
+
+Stage 1: Source Code Management
+
+Developers upload their changes to the GitHub repository.
+
+Stage 2: Dependency Installation
+
+The pipeline installs the required Python packages using "requirements.txt".
+
+Stage 3: Automated Testing
+
+API endpoints are checked to verify that they return the expected responses.
+
+Stage 4: Docker Build
+
+If all tests pass, Docker builds an image using the project's Dockerfile.
+
+Stage 5: Container Execution
+
+The generated image is used to start the application inside a Docker container.
+
+4. Failure Handling
+
+If a test fails, the pipeline stops at the testing stage.
+
+GitHub Actions displays the failure details so the developer can identify and fix the problem.
+
+The pipeline can run again after the corrected code is pushed to GitHub.
+
+5. Conclusion
+
+The CI/CD workflow improves software quality by automating testing and Docker image creation. It reduces manual work and helps detect errors before deployment.
